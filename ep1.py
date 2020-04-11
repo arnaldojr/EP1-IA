@@ -14,7 +14,7 @@
   AINDA ASSIM, PODERAO SER PUNIDOS POR DESONESTIDADE ACADEMICA.
 
   Nome : Arnaldo Alves Viana Junior
-  NUSP : 
+  NUSP : 11596396
 
   Referencias: Com excecao das rotinas fornecidas no enunciado
   e em sala de aula, caso voce tenha utilizado alguma referencia,
