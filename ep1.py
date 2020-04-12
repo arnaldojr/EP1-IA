@@ -114,30 +114,34 @@ class VowelInsertionProblem(util.Problem):
 
     def isState(self, state):
         """ Metodo  que implementa verificacao de estado """
-        raise NotImplementedError
+        # raise NotImplementedError
+
 
     def initialState(self):
         """ Metodo  que implementa retorno da posicao inicial """
         #raise NotImplementedError
-        return 0
+        self.queryWords.insert(0,util.SENTENCE_BEGIN)
+        result = tuple(self.queryWords,) #tem que ser tuple
+        print("initialState: ",result) 
+        return result
 
     def actions(self, state):
         """ Metodo  que implementa retorno da lista de acoes validas
         para um determinado estado
         """
-        raise NotImplementedError
+        # raise NotImplementedError
 
     def nextState(self, state, action):
         """ Metodo que implementa funcao de transicao """
-        raise NotImplementedError
+        # raise NotImplementedError
 
     def isGoalState(self, state):
         """ Metodo que implementa teste de meta """
-        raise NotImplementedError
+        # raise NotImplementedError
 
     def stepCost(self, state, action):
         """ Metodo que implementa funcao custo """
-        raise NotImplementedError
+        # raise NotImplementedError
 
 
 
@@ -145,7 +149,18 @@ def insertVowels(queryWords, bigramCost, possibleFills):
     # BEGIN_YOUR_CODE 
     # Voce pode usar a função getSolution para recuperar a sua solução a partir do no meta
     # valid,solution  = util.getSolution(goalNode,problem)
-     raise NotImplementedError
+    #  raise NotImplementedError
+    problem = VowelInsertionProblem(queryWords, bigramCost, possibleFills)
+    goal = util.uniformCostSearch(problem)
+    # valid, solution = util.getSolution(goal, problem)
+
+    # if valid:
+    #     return solution
+
+    # return None
+
+
+
     # END_YOUR_CODE
 
 ############################################################
@@ -178,14 +193,14 @@ def main():
     # frase = 'mynameis'
     # frase = 'believeinyour'
     # frase = 'believeinyourselfhavefaithinyourabilities'
-    frase = 'believeinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilities'    
-    resulSegment = segmentWords(frase, unigramCost)
+    # frase = 'believeinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilities'    
+    # resulSegment = segmentWords(frase, unigramCost)
     # resulSegment = segmentWords('believeinyour', unigramCost)
-    print("frase:",frase)
-    print("resultado:",resulSegment)
+    # print("frase:",frase)
+    # print("resultado:",resulSegment)
     
-    # resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
-    # print(resultInsert)
+    resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
+    print(resultInsert)
 
 if __name__ == '__main__':
     main()
