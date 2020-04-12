@@ -141,7 +141,7 @@ class VowelInsertionProblem(util.Problem):
         #     for j in possiblefill:
         #         acao.append((j,i))
         acao = [(j,i) for i in range(0, len(state)) for j in self.possibleFills(state[i]) ]
-        print("acoes: ",acao)
+        # print("acoes: ",acao)
         return acao
 
     def nextState(self, state, action):
@@ -178,11 +178,11 @@ def insertVowels(queryWords, bigramCost, possibleFills):
     # valid,solution  = util.getSolution(goalNode,problem)
     #  raise NotImplementedError
     problem = VowelInsertionProblem(queryWords, bigramCost, possibleFills)
-    goalNode = util.uniformCostSearch(problem)
-    valid, solution  = util.getSolution(goalNode,problem)
+    goal = util.uniformCostSearch(problem)
+    valid, solution  = util.getSolution(goal,problem)
 
     if valid:
-        return goalNode.state
+        return goal.state
     return result
     # END_YOUR_CODE
 
@@ -205,6 +205,22 @@ def getRealCosts(corpus='corpus.txt'):
 
     return _realUnigramCost, _realBigramCost, _possibleFills
 
+def getRealCostspt(corpus='corpuspt.txt'):
+
+    """ Retorna as funcoes de custo unigrama, bigrama e possiveis fills obtidas a partir do corpus em portugues."""
+    
+    _realUnigramCost, _realBigramCost, _possibleFills = None, None, None
+    if _realUnigramCost is None:
+        print('Treinamento em portugues do custo da funcão [corpus: '+ corpus+']... ')
+        
+        _realUnigramCost, _realBigramCost = util.makeLanguageModels(corpus)
+        _possibleFills = util.makeInverseRemovalDictionary(corpus, 'aeiou')
+
+        print('Done!')
+
+    return _realUnigramCost, _realBigramCost, _possibleFills
+
+
 def main():
     """ Voce pode/deve editar o main() para testar melhor sua implementacao.
 
@@ -212,19 +228,24 @@ def main():
     lhe dar uma ideia de como instanciar e chamar suas funcoes.
     Descomente as linhas que julgar conveniente ou crie seus proprios testes.
     """
-    unigramCost, bigramCost, possibleFills  =  getRealCosts()
-    
-    # frase = 'mynameis'
     # frase = 'believeinyour'
-    # frase = 'believeinyourselfhavefaithinyourabilities'
-    # frase = 'believeinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilities'    
-    # resulSegment = segmentWords(frase, unigramCost)
-    # resulSegment = segmentWords('believeinyour', unigramCost)
-    # print("frase:",frase)
-    # print("resultado:",resulSegment)
+    # unigramCost, bigramCost, possibleFills  =  getRealCosts()
     
-    resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
-    print(resultInsert)
+   
+    ##############################################################################
+    # Para testar com frases em portugues, usar a funcao getRealCostspt() abaixo #
+    ##############################################################################   
+    
+    frase = 'voceconsegueterminarestetrabalho'
+    unigramCost, bigramCost, possibleFills  =  getRealCostspt()
+    
+    resulSegment = segmentWords(frase, unigramCost)   
+    print("frase:",frase)
+    print("resultado:",resulSegment)
+
+    
+    # resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
+    # print(resultInsert)
 
 if __name__ == '__main__':
     main()
