@@ -26,9 +26,10 @@
   https://pt.wikipedia.org/wiki/Quicksort
   http://www.ime.usp.br/~pf/algoritmos/aulas/quick.html
   
+  Referencias:
   https://jeremykun.com/2012/01/15/word-segmentation/
   https://web.stanford.edu/class/archive/cs/cs221/cs221.1196/assignments/reconstruct/index.html
-
+  http://inst.eecs.berkeley.edu/~cs188/sp20/
 """
 
 import util
@@ -115,7 +116,7 @@ class VowelInsertionProblem(util.Problem):
     def isState(self, state):
         """ Metodo  que implementa verificacao de estado """
         # raise NotImplementedError
-
+        return
 
     def initialState(self):
         """ Metodo  que implementa retorno da posicao inicial """
@@ -138,6 +139,10 @@ class VowelInsertionProblem(util.Problem):
     def isGoalState(self, state):
         """ Metodo que implementa teste de meta """
         # raise NotImplementedError
+        print("o que é isso: ", self.actions(state))
+        if len(self.actions(state)) != 0:
+            return False
+        return True
 
     def stepCost(self, state, action):
         """ Metodo que implementa funcao custo """
@@ -158,6 +163,10 @@ def insertVowels(queryWords, bigramCost, possibleFills):
     #     return solution
 
     # return None
+    if .actions != None:
+        return " ".join(ucs.actions)
+    else:
+        return " ".join(queryWords)
 
 
 

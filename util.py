@@ -69,6 +69,8 @@ def informed_search(problem, f):
     print("reached", reached)
     while frontier:
         node = frontier.pop()
+        print("while")
+        print("isGoalState", problem.isGoalState(node.state))
         if problem.isGoalState(node.state):
             return node
         for action in problem.actions(node.state):
