@@ -122,7 +122,7 @@ class VowelInsertionProblem(util.Problem):
         """ Metodo  que implementa retorno da posicao inicial """
         #raise NotImplementedError
         self.queryWords.insert(0,util.SENTENCE_BEGIN)
-        result = tuple(self.queryWords,) #tem que ser tuple
+        result = tuple(self.queryWords,) #tem que ser tuple 
         print("initialState: ",result) 
         return result
 
@@ -139,9 +139,11 @@ class VowelInsertionProblem(util.Problem):
     def isGoalState(self, state):
         """ Metodo que implementa teste de meta """
         # raise NotImplementedError
-        print("o que é isso: ", self.actions(state))
-        if len(self.actions(state)) != 0:
+        print("action(state): ", self.actions(state))
+        if self.actions(state) != None:
+            print("estadometa: ", False)
             return False
+        print("estadometa: ", True)
         return True
 
     def stepCost(self, state, action):
@@ -157,19 +159,12 @@ def insertVowels(queryWords, bigramCost, possibleFills):
     #  raise NotImplementedError
     problem = VowelInsertionProblem(queryWords, bigramCost, possibleFills)
     goal = util.uniformCostSearch(problem)
-    # valid, solution = util.getSolution(goal, problem)
-
-    # if valid:
-    #     return solution
+    valid, solution = util.getSolution(goal, problem)
+    print("solution: ", solution)
+    if valid:
+        return solution
 
     # return None
-    if .actions != None:
-        return " ".join(ucs.actions)
-    else:
-        return " ".join(queryWords)
-
-
-
     # END_YOUR_CODE
 
 ############################################################
