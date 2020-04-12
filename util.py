@@ -61,19 +61,23 @@ def informed_search(problem, f):
     """Informed search using as a key of the Priority Queue f"""
 
     initialNode = Node(problem.initialState(), 0)
-    print("initialnode", initialNode)
+    # print("initialnode", initialNode)
     frontier= PriorityQueue(f, [initialNode])
     reached = dict()
-    print("initialnode", reached)
+    # print("initialnode", reached)
     reached[initialNode.state] = initialNode.cost
-    print("reached", reached)
+    # print("reached", reached)
     while frontier:
         node = frontier.pop()
-        print("while")
-        print("isGoalState", problem.isGoalState(node.state))
+        # print("while")
+        # print("isGoalState", problem.isGoalState(node.state))
+        # print("util.action", problem.actions(node.state))
         if problem.isGoalState(node.state):
             return node
         for action in problem.actions(node.state):
+            # print("estou no for")
+            # print("nextState", problem.nextState(node.state, action))
+            # print("stepCost", problem.stepCost(node.state, action))
             state = problem.nextState(node.state, action)
             cost = problem.stepCost(node.state, action) + node.cost
             if state not in reached or  cost < reached[state] :

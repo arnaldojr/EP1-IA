@@ -122,8 +122,9 @@ class VowelInsertionProblem(util.Problem):
         """ Metodo  que implementa retorno da posicao inicial """
         #raise NotImplementedError
         self.queryWords.insert(0,util.SENTENCE_BEGIN)
-        result = tuple(self.queryWords,) #tem que ser tuple 
-        print("initialState: ",result) 
+        # result = self.queryWords #tem que ser tuple tem dicionario em util
+        result = tuple(self.queryWords,) 
+        # print("initialState: ",result) 
         return result
 
     def actions(self, state):
@@ -131,24 +132,45 @@ class VowelInsertionProblem(util.Problem):
         para um determinado estado
         """
         # raise NotImplementedError
+        # print("o que é possibleFills:", self.possibleFills)
+        # print("o que é possibleFills:", self.queryWords)
+        # acao = []
+        # for i in range(0, len(state)):
+        #     print(state[i])
+        #     possiblefill = self.possibleFills(state[i])
+        #     for j in possiblefill:
+        #         acao.append((j,i))
+        acao = [(j,i) for i in range(0, len(state)) for j in self.possibleFills(state[i]) ]
+        # print("acoes: ",acoes)
+        return acao
+   
+
 
     def nextState(self, state, action):
         """ Metodo que implementa funcao de transicao """
         # raise NotImplementedError
+        # print("o que é state:", state)
+        # print("o que é action:", action)
+        nextstate = action 
+        return nextstate
 
     def isGoalState(self, state):
         """ Metodo que implementa teste de meta """
         # raise NotImplementedError
-        print("action(state): ", self.actions(state))
-        if self.actions(state) != None:
-            print("estadometa: ", False)
+        # print("action(state): ", self.actions(state))
+        if self.actions(state) != []:
+            # print("estadometa: ", False)
             return False
-        print("estadometa: ", True)
+        # print("estadometa: ", True)
         return True
 
     def stepCost(self, state, action):
         """ Metodo que implementa funcao custo """
         # raise NotImplementedError
+        cost = 0
+        for i in range(len(action)-1):
+            cost += self.bigramCost(action[i], action[i+1])
+        return cost
 
 
 
@@ -157,15 +179,23 @@ def insertVowels(queryWords, bigramCost, possibleFills):
     # Voce pode usar a função getSolution para recuperar a sua solução a partir do no meta
     # valid,solution  = util.getSolution(goalNode,problem)
     #  raise NotImplementedError
-    problem = VowelInsertionProblem(queryWords, bigramCost, possibleFills)
-    goal = util.uniformCostSearch(problem)
-    valid, solution = util.getSolution(goal, problem)
-    print("solution: ", solution)
-    if valid:
-        return solution
+    # problem = VowelInsertionProblem(queryWords, bigramCost, possibleFills)
+    # goal = util.uniformCostSearch(problem)
+    # valid, solution = util.getSolution(goal, problem)
+    # print("solution: ", goal)
+    # if valid:
+    #     return solution
 
     # return None
     # END_YOUR_CODE
+    for i in range (len(queryWords)):
+        queryWords[i] = queryWords[i].lower()
+    vp = VowelInsertionProblem(queryWords, bigramCost, possibleFills)
+    ret = util.uniformCostSearch(vp)
+    if(ret):
+        return ret.state
+    else:
+        return ''
 
 ############################################################
 
