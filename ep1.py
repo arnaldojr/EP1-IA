@@ -60,7 +60,8 @@ class SegmentationProblem(util.Problem):
         """
         # raise NotImplementedError
         word = self.query[state:]
-        action = [word[:i] for i in range(1,len(word) + 1)  ]
+        action = [word[:i] for i in range(1,len(word) + 1)]
+        #print("action", action)
         return action
 
 
@@ -100,6 +101,7 @@ def segmentWords(query, unigramCost):
         valid, solution  = util.getSolution(goal,problem)
         return solution
     # END_YOUR_CODE
+
 
 ############################################################
 # Part 2: Vowel insertion problem under a bigram cost
@@ -143,7 +145,7 @@ def insertVowels(queryWords, bigramCost, possibleFills):
     # BEGIN_YOUR_CODE 
     # Voce pode usar a função getSolution para recuperar a sua solução a partir do no meta
     # valid,solution  = util.getSolution(goalNode,problem)
-    raise NotImplementedError
+     raise NotImplementedError
     # END_YOUR_CODE
 
 ############################################################
@@ -172,16 +174,18 @@ def main():
     Descomente as linhas que julgar conveniente ou crie seus proprios testes.
     """
     unigramCost, bigramCost, possibleFills  =  getRealCosts()
-    frase = 'mynameis'
-    #frase = 'believeinyour'
-    #frase = 'believeinyourselfhavefaithinyourabilities'
+    
+    # frase = 'mynameis'
+    # frase = 'believeinyour'
+    # frase = 'believeinyourselfhavefaithinyourabilities'
+    frase = 'believeinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilitiesbelieveinyourselfhavefaithinyourabilities'    
     resulSegment = segmentWords(frase, unigramCost)
-    #resulSegment = segmentWords('believeinyour', unigramCost)
+    # resulSegment = segmentWords('believeinyour', unigramCost)
     print("frase:",frase)
     print("resultado:",resulSegment)
     
-   # resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
-   # print(resultInsert)
+    # resultInsert = insertVowels('smtms ltr bcms nvr'.split(), bigramCost, possibleFills)
+    # print(resultInsert)
 
 if __name__ == '__main__':
     main()
