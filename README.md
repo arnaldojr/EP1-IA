@@ -1,3 +1,4 @@
+
 # Inteligência Artificial
 
 Esse repositório inclui os exercicios problemas da disciplina MAC0425/5739 - Inteligência Artificial - IME/USP de 2020.
@@ -7,3 +8,7 @@ Esse repositório inclui os exercicios problemas da disciplina MAC0425/5739 - In
 ### EP1 - Recostrução de Texto via Busca
 
 * Neste EP são praticadas técnicas de processamento de linguagem natural NLP <br>
+
+
+ 
+ [Site is published at: https://arnaldojr.github.io/EP1-IA/](https://arnaldojr.github.io/EP1-IA/)
